@@ -21,7 +21,7 @@ import sys
 import subprocess
 import textwrap
 
-import GameClasses
+import game_classes
 
 
 def do_textwrap(text_in, separator=False):
@@ -124,13 +124,13 @@ def main_game():
     clr_screen()
 
     # Instantiate 'player' object.
-    player = GameClasses.Player()
+    player = game_classes.Player()
 
     # Instantiate 'room' object.
-    room = GameClasses.Room()
+    room = game_classes.Room()
 
     # Instantiate 'game' object with 'room' and 'player' object as args.
-    game = GameClasses.Game(room, player)
+    game = game_classes.Game(room, player)
 
     # TODO If new game or saved game sets filename.
     # 'game_save.json'
