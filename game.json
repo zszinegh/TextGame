@@ -1,0 +1,189 @@
+{
+  "USE THIS AS TEMPLATE - and use an existing entry as a guide": {
+    "items": [
+      "some inventory item"
+    ],
+    "name": "TEMPLATE",
+    "name_better": "TEMPLATE - more grammatically correct for the 'where' command, which prints 'You are'. This field should finish the sentence with the room name for example 'You are in the Lobby'.",
+    "adjacent_rooms": {
+      "adjacent_room_command": "Adjacent Room",
+      "command_to_dead_room": "Optional to die in this room. Preface your 'death' rooms with 'DEAD_' + name of this room(to keep them organized). See how on an existing entry."
+    },
+    "adjacent_rooms_unlocked": {
+      "adjacent_room": "Adjacent Room (same as existing)",
+      "adjacent_room_unlocked": "Adjacent Room Unlocked"
+    },
+    "usable_items": {
+      "some usable item": "Description of what happens when item is used."
+    },
+    "description": "Description of room. If it's lengthy and you want to break it up into paragraphs, separate the paragraphs using '<P>' (uppercase P in gt and lt symbols).",
+    "description_unlocked": "Description of UNLOCKED room. If it's lengthy and you want to break it up into paragraphs, separate the paragraphs using '<P>' (uppercase P in gt and lt symbols).",
+    "hint": "Text for a room hint. If it's lengthy and you want to break it up into paragraphs, separate the paragraphs using '<P>' (uppercase P in gt and lt symbols)."
+  },
+  "Start": {
+    "items": [],
+    "name": "Start",
+    "name_better": "at the Start",
+    "adjacent_rooms": {
+      "start_game": "Outside"
+    },
+    "adjacent_rooms_unlocked": {
+      "start_game": "Outside"
+    },
+    "usable_items": {},
+    "description": "Welcome to Apocalypse Apartments...<P>It's a typical story, the Superpowers saw fit to scorch the planet by launching all their nuclear weapons. Somehow you survived, as did some others. There are of course various <insert post-apocalyptic mutant mammal here> roaming the earth as well. Your goal is to get to the roof of a building with some kind of functioning communication device, in hopes of contacting other survivors. Good luck!<P>Type 'help' anytime for a list of commands. Type 'quit' to end the game.",
+    "description_unlocked": "unlocked description",
+    "hint": "Come on now, you should be able to figure out what to do!"
+  },
+  "Outside": {
+    "items": [
+      "gum"
+    ],
+    "name": "Outside",
+    "name_better": "Outside",
+    "adjacent_rooms": {
+      "entrance": "Lobby"
+    },
+    "adjacent_rooms_unlocked": {
+      "entrance": "Lobby"
+    },
+    "usable_items": {},
+    "description": "You find yourself outside of a dilapidated apartment building. It looks to be about six stories high. The entrance has no doors, probably because what's left of them are strewn off to the side. The sky is overcast, actually you can't remember the last time it wasn't...",
+    "description_unlocked": "unlocked description",
+    "hint": "Having some trouble? Read the descriptions carefully, the answers are usually there. The room's description can be reloaded by using the 'look' command. You get a freebie this time, to enter the building type 'go entrance'."
+  },
+  "Lobby": {
+    "items": [
+      "flashlight"
+    ],
+    "name": "Lobby",
+    "name_better": "in the Lobby",
+    "adjacent_rooms": {
+      "outside": "Outside"
+    },
+    "adjacent_rooms_unlocked": {
+      "outside": "Outside",
+      "up": "2nd Floor Landing",
+      "down": "Basement Landing"
+    },
+    "usable_items": {
+      "flashlight": "Amazingly when you try the switch, it works! As you sweep it around the lobby, you see a battered staircase ahead of you with stairs going up and down. You swear you hear the Energizer Bunny laughing hysterically somewhere..."
+    },
+    "description": "You are in what's left of the Lobby. There isn't much to see, since most of the room is in darkness. The only light is spilling into the room from the entrance you used to enter from the outside.<P>You felt something under your boot when you came in, and on further inspection, you find a rusty old flashlight...",
+    "description_unlocked": "You are in what's left of the Lobby. There isn't much to see except a battered staircase with sets of stairs that go up and down. You can also see the doorway to the outside that you came through originally.",
+    "hint": "I think it should be obvious what needs to be done, don't you?"
+  },
+  "2nd Floor Landing": {
+    "items": [
+      "broken smartphone"
+    ],
+    "name": "2nd Floor Landing",
+    "name_better": "on the 2nd Floor Landing",
+    "adjacent_rooms": {
+      "down": "Lobby",
+      "door 13": "Apt 13",
+      "door 31": "Apt 31",
+      "hole": "DEAD_2ndFloorLanding"
+    },
+    "adjacent_rooms_unlocked": {
+      "down": "Lobby"
+    },
+    "usable_items": {},
+    "description": "You get to the 2nd floor landing, to find a huge section of the wall missing. There is enough outside light coming through the hole so you can see partway down the hall. Nearest to you on either side of the hall are two apartment doors that have somehow remained intact. One door has 13 on it, the other 31. You find that kind of strange, but whatever.<P>The stairs leading up to the next floor are completely barricaded with large charred pieces of concrete and re-bar. You find a broken smartphone wedged between two smaller chunks of debris.",
+    "description_unlocked": "unlocked description",
+    "hint": "2nd Floor Landing hint..."
+  },
+  "Apt 13": {
+    "items": [
+      "guitar amplifier"
+    ],
+    "name": "Apt 13",
+    "name_better": "in Apt 13",
+    "adjacent_rooms": {
+      "door": "2nd Floor Landing",
+      "window": "NOWHERE"
+    },
+    "adjacent_rooms_unlocked": {
+      "door": "2nd Floor Landing"
+    },
+    "usable_items": {},
+    "description": "Apt 13 description...",
+    "description_unlocked": "unlocked description",
+    "hint": "Apt 13 hint..."
+  },
+  "Apt 31": {
+    "items": [],
+    "name": "Apt 31",
+    "name_better": "in Apt 31",
+    "adjacent_rooms": {
+      "door": "2nd Floor Landing",
+      "window": "NOWHERE",
+      "bedroom": "NOWHERE"
+    },
+    "adjacent_rooms_unlocked": {
+      "door": "2nd Floor Landing"
+    },
+    "usable_items": {},
+    "description": "Apt 31 description...",
+    "description_unlocked": "unlocked description",
+    "hint": "Apt 31 hint..."
+  },
+  "Basement Landing": {
+    "items": [],
+    "name": "Basement Landing",
+    "name_better": "on the Basement Landing",
+    "adjacent_rooms": {
+      "up": "Lobby"
+    },
+    "adjacent_rooms_unlocked": {
+      "up": "Lobby",
+      "ahead": "Basement"
+    },
+    "usable_items": {
+      "flashlight": "As you shine the flashlight beam ahead of you into what looks like an open basement, you catch sight of several pairs of eyes reflecting back at you. Just as quickly they are gone..."
+    },
+    "description": "After coming down the stairs, you arrive on a landing. Once again you can't see squat. Your sense of smell however is working overtime, nothing like the odor of rotting flesh to brighten your day!<P>You also hear the scurrying of small clawed feet somewhere ahead of you...",
+    "description_unlocked": "You arrive on a landing. Ahead of you is a large open basement area. You catch sight of several pairs of eyes reflecting back at you, just as quickly they are gone. There is a set of stairs going up to the lobby.",
+    "hint": "Really? You need a hint here?"
+  },
+  "Basement": {
+    "items": [
+      "spool of wire"
+    ],
+    "name": "Basement",
+    "name_better": "in the Basement",
+    "adjacent_rooms": {
+      "back": "Basement Landing",
+      "landing": "DEAD_Basement"
+    },
+    "adjacent_rooms_unlocked": {
+      "back": "Basement Landing"
+    },
+    "usable_items": {},
+    "description": "The rank smell is pretty powerful. You scan around the room, and your flashlight beam crosses over some large dark mounds. Around each one are various animals, of questionable lineage, about the size of small dogs.<P>At the mound nearest you, the critters look up at you. They aren't exactly glad to see you. It would probably be a good idea to grab the spool of wire you see and head back to the landing...",
+    "description_unlocked": "unlocked description",
+    "hint": "I would 'make like a tree' and get out of there!"
+  },
+  "DEAD_2ndFloorLanding": {
+    "items": [],
+    "name": "Dead",
+    "name_better": "Dead",
+    "adjacent_rooms": {},
+    "adjacent_rooms_unlocked": {},
+    "usable_items": {},
+    "description": "Well that was defintely a mistake! As you climbed onto the debris, it started to give way. You fell out the hole in the wall and hit the ground face first. You may have lived except for the avalanche of concrete and steel that pulverized you!<P>Game Over.<P>",
+    "description_unlocked": "unlocked description",
+    "hint": "DEAD_2ndFloorLanding hint..."
+  },
+  "DEAD_Basement": {
+    "items": [],
+    "name": "Dead",
+    "name_better": "Dead",
+    "adjacent_rooms": {},
+    "adjacent_rooms_unlocked": {},
+    "usable_items": {},
+    "description": "Just as you decide to move, five snarling beasts launch themselves at you! Sadly saying 'nice doggy' isn't working, they begin ripping you to shreds. You die a slow, agonizing death.<P>Game Over.<P>",
+    "description_unlocked": "unlocked description",
+    "hint": "DEAD_2ndFloorLanding hint..."
+  }
+}
