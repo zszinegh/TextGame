@@ -101,7 +101,7 @@
     "name_better": "in Apt 13",
     "adjacent_rooms": {
       "door": "2nd Floor Landing",
-      "window": "NOWHERE"
+      "window": "DEAD_Apt13"
     },
     "adjacent_rooms_unlocked": {
       "door": "2nd Floor Landing"
@@ -185,5 +185,16 @@
     "description": "Just as you decide to move, five snarling beasts launch themselves at you! Sadly saying 'nice doggy' isn't working, they begin ripping you to shreds. You die a slow, agonizing death.<P>Game Over.<P>",
     "description_unlocked": "unlocked description",
     "hint": "DEAD_2ndFloorLanding hint..."
+  },
+  "DEAD_Apt13": {
+    "items": [],
+    "name": "Dead",
+    "name_better": "Dead",
+    "adjacent_rooms": {},
+    "adjacent_rooms_unlocked": {},
+    "usable_items": {},
+    "description": "DEAD_Apt13 description...<P>Game Over.<P>",
+    "description_unlocked": "unlocked description",
+    "hint": "DEAD_Apt13 hint..."
   }
 }
