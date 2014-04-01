@@ -55,8 +55,8 @@ class Game(object):
         try:
             self.json_db[room_name]
         except KeyError:
-            # This shouldn't happen if all rooms in game are define
-            # in 'game.json'.
+            # This shouldn't happen if all rooms are defined in
+            # 'game.json'.
             print 'Room %s not available yet.' % room_name
             # 'clr_screen()' would prevent message being seen.
             raw_input('DEBUG: Press ENTER to continue.')
