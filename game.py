@@ -4,14 +4,14 @@ This module is typically run using 'python game.py' but can also be
 run as a standalone script the usual way.
 
 The game data file is 'game.json' and expects to be in the same
-directory as 'game.py'. Each room is a dictionary stored in a master
-dictionary using the room name as a key. To add more rooms, duplicate
-the structure of any room and adjust. I used 'jsoneditoronline.org'
-to edit this file. The file should make sense when looking at it in
-a proper editor.
+directory as 'game.py'. Each room is a dictionary record stored in a
+master dictionary using the room name as a key. To add more rooms,
+duplicate the structure of any room and adjust. I used
+'jsoneditoronline.org' to edit this file. The file should make sense
+when looking at it in a proper editor.
 
 The main program loop is in 'main_game()' and is ended by setting
-'player.alive = False', or by calling 'do_quit()'.
+'game.player.alive = False'.
 
 Main game methods are in class Game() in 'GameClasses.py'.
 
@@ -57,38 +57,29 @@ def do_textwrap(text_in, separator=False):
 
     if separator:
         print text_sep
-        for p in range(0, p_len):
-            textwrap.dedent(paragraph_list[p])
-            text_out = textwrap.wrap(paragraph_list[p], width)
+        for paragraph in range(0, p_len):
+            textwrap.dedent(paragraph_list[paragraph])
+            text_out = textwrap.wrap(paragraph_list[paragraph], width)
             for text in text_out:
                 print text
-            if p != p_len - 1:
+            if paragraph != p_len - 1:
                 print  # Paragraph break.
         print text_sep
 
     else:
-        for p in range(0, p_len):
-            textwrap.dedent(paragraph_list[p])
-            text_out = textwrap.wrap(paragraph_list[p], width)
+        for paragraph in range(0, p_len):
+            textwrap.dedent(paragraph_list[paragraph])
+            text_out = textwrap.wrap(paragraph_list[paragraph], width)
             for text in text_out:
                 print text
-            if p != p_len - 1:
+            if paragraph != p_len - 1:
                 print  # Paragraph break.
 
 
 def clr_screen():
     """Clear console screen."""
 
-    # TODO - do an OS check at startup, windows needs 'cls'
-    subprocess.call('clear')
-
-
-def do_quit():
-    """Exit the program."""
-
-    print 'Quitting the game...'
-    print
-    sys.exit(0)
+    subprocess.call(clear_cmd)
 
 
 def add_quotes(list_in, title_text):
@@ -118,19 +109,8 @@ def add_quotes(list_in, title_text):
     return text_out
 
 
-def main_game():
-    """Initializes the game and starts game loop."""
-
-    clr_screen()
-
-    # Instantiate 'player' object.
-    player = game_classes.Player()
-
-    # Instantiate 'room' object.
-    room = game_classes.Room()
-
-    # Instantiate 'game' object with 'room' and 'player' object as args.
-    game = game_classes.Game(room, player)
+def init_game():
+    """Initialize the game."""
 
     # TODO If new game or saved game sets filename.
     # 'game_save.json'
@@ -140,23 +120,23 @@ def main_game():
     game.load_room('Start')  # Load default 'start' room.
 
     clr_screen()
-    do_textwrap(room.description, True)
+    do_textwrap(game.room.description, True)
 
     entered_name = raw_input('Enter your name ')
     entered_name = entered_name.capitalize()
-    player.name = entered_name
+    game.player.name = entered_name
 
     clr_screen()
     game.go('start_game')  # Puts player in opening room.
-    do_textwrap(room.description, True)
+    do_textwrap(game.room.description, True)
     do_textwrap(' '.join(game.user_msg))
 
-    # TODO Pull these from a file??
-    command_list = ['go', 'use', 'inv', 'where', 'look', 'whoami',
-                    'help', 'hint', 'quit']
+
+def main_game():
+    """Start the game loop."""
 
     # Main loop.
-    while player.alive:
+    while game.player.alive:
         print
         player_text = raw_input('> ')
         player_text = player_text.lower()
@@ -167,35 +147,37 @@ def main_game():
 
         if player_input_list[0] not in command_list:
             game.user_msg.append("I'm sorry, %s. I'm afraid '%s' is not a"
-                                 " valid command." % (player.name,
+                                 " valid command." % (game.player.name,
                                                       player_input_list[0]))
             do_textwrap(' '.join(game.user_msg))
 
         else:
             if player_input_list[0] == 'quit':
                 # TODO Question save game?
-                do_quit()
+                print 'Quitting the game...'
+                print
+                game.player.alive = False
 
             elif player_input_list[0] == 'help':
                 quoted_commands = add_quotes(command_list, 'COMMANDS: ')
                 do_textwrap(quoted_commands, True)
 
             elif player_input_list[0] == 'whoami':
-                print 'You are %s.' % player.name
+                print 'You are %s.' % game.player.name
 
             elif player_input_list[0] == 'where':
-                print 'You are %s.' % room.name_better
+                print 'You are %s.' % game.room.name_better
 
             elif player_input_list[0] == 'look':
                 clr_screen()
-                do_textwrap(room.description, True)
+                do_textwrap(game.room.description, True)
 
             elif player_input_list[0] == 'hint':
                 clr_screen()
-                do_textwrap(room.hint, True)
+                do_textwrap(game.room.hint, True)
 
             elif player_input_list[0] == 'inv':
-                quoted_items = add_quotes(player.inv_list, 'INVENTORY: ')
+                quoted_items = add_quotes(game.player.inv_list, 'INVENTORY: ')
                 do_textwrap(quoted_items, True)
 
             elif player_input_list[0] == 'go':
@@ -205,7 +187,7 @@ def main_game():
                     print 'go where?'
                 else:
                     clr_screen()
-                    do_textwrap(room.description, True)
+                    do_textwrap(game.room.description, True)
                     do_textwrap(' '.join(game.user_msg))
 
             elif player_input_list[0] == 'use':
@@ -218,6 +200,24 @@ def main_game():
             else:
                 print 'ERROR: \'%s\' not defined yet.' % player_input_list[0]
 
+    sys.exit(0)
 
 if __name__ == '__main__':
+
+    # Check for windoze for clear screen command.
+    if sys.platform.startswith('win32'):
+        clear_cmd = 'cls'
+    else:
+        clear_cmd = 'clear'
+
+    # Instantiate 'game' object.
+    game = game_classes.Game()
+
+    # TODO Pull these from a file??
+    # The basic commands that can be typed.
+    command_list = ['go', 'use', 'inv', 'where', 'look', 'whoami',
+                    'help', 'hint', 'quit']
+
+    # Startup the game.
+    init_game()
     main_game()

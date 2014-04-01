@@ -7,19 +7,11 @@ import json
 class Game(object):
     """Main game class."""
 
-    def __init__(self, room, player):
-        """Init method.
+    def __init__(self):
+        """Init method."""
 
-        This class should be instantiated after the 'Player()' and
-        'Room()' classes.
-
-        Args:
-            room (obj): An instance of a 'Room()' object.
-            player (obj): An instance of a 'Player()' object.
-        """
-
-        self.room = room  # To access room attributes from this object.
-        self.player = player  # To access player attributes.
+        self.room = Room()  # To access room attributes from this object.
+        self.player = Player()  # To access player attributes.
 
         self.json_db = {}  # Stores game data from json file as dict.
 
@@ -63,8 +55,11 @@ class Game(object):
         try:
             self.json_db[room_name]
         except KeyError:
+            # This shouldn't happen if all rooms in game are define
+            # in 'game.json'.
             print 'Room %s not available yet.' % room_name
-            raw_input('DEBUG')  # TODO remove this later.
+            # 'clr_screen()' would prevent message being seen.
+            raw_input('DEBUG: Press ENTER to continue.')
         else:
             self.room.room_record = self.json_db[room_name]
 
@@ -76,7 +71,7 @@ class Game(object):
         self.room.adjacent_rooms = self.room.room_record['adjacent_rooms']
         self.room.hint = self.room.room_record['hint']
 
-        # Check to see of player entered a 'Dead' room.
+        # Check to see if player entered a 'Dead' room.
         if self.room.name == 'Dead':
             self.player.alive = False
         else:
