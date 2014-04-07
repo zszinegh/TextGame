@@ -120,7 +120,7 @@ class Game(object):
         # Clear to make sure nothing leftover.
         self.user_msg = []
 
-        # if usable item in the room, that triggers update.
+        # If usable item in the room, that triggers update.
         if inv_item in self.player.inv_list:
             if inv_item in self.room.room_record['usable_items']:
 

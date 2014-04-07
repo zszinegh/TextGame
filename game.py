@@ -109,6 +109,10 @@ def add_quotes(list_in, title_text):
     return text_out
 
 
+def cmd_process():
+    pass
+
+
 def init_game():
     """Initialize the game."""
 
@@ -134,6 +138,11 @@ def init_game():
 
 def main_game():
     """Start the game loop."""
+
+    # TODO Pull these from a file??
+    # The basic commands that can be typed.
+    command_list = ['go', 'use', 'inv', 'where', 'look', 'whoami',
+                    'help', 'hint', 'quit']
 
     # Main loop.
     while game.player.alive:
@@ -212,11 +221,6 @@ if __name__ == '__main__':
 
     # Instantiate 'game' object.
     game = game_classes.Game()
-
-    # TODO Pull these from a file??
-    # The basic commands that can be typed.
-    command_list = ['go', 'use', 'inv', 'where', 'look', 'whoami',
-                    'help', 'hint', 'quit']
 
     # Startup the game.
     init_game()
