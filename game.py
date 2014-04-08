@@ -57,29 +57,21 @@ def do_textwrap(text_in, separator=False):
 
     if separator:
         print text_sep
-        for paragraph in range(0, p_len):
-            textwrap.dedent(paragraph_list[paragraph])
-            text_out = textwrap.wrap(paragraph_list[paragraph], width)
-            for text in text_out:
-                print text
-            if paragraph != p_len - 1:
-                print  # Paragraph break.
+    for paragraph in range(0, p_len):
+        textwrap.dedent(paragraph_list[paragraph])
+        text_out = textwrap.wrap(paragraph_list[paragraph], width)
+        for text in text_out:
+            print text
+        if paragraph != p_len - 1:
+            print  # Paragraph break.
+    if separator:
         print text_sep
-
-    else:
-        for paragraph in range(0, p_len):
-            textwrap.dedent(paragraph_list[paragraph])
-            text_out = textwrap.wrap(paragraph_list[paragraph], width)
-            for text in text_out:
-                print text
-            if paragraph != p_len - 1:
-                print  # Paragraph break.
 
 
 def clr_screen():
     """Clear console screen."""
 
-    subprocess.call(clear_cmd)
+    subprocess.call(CLEAR_CMD)
 
 
 def add_quotes(list_in, title_text):
@@ -107,10 +99,6 @@ def add_quotes(list_in, title_text):
     text_out = title_text + text_out
 
     return text_out
-
-
-def cmd_process():
-    pass
 
 
 def init_game():
@@ -215,9 +203,9 @@ if __name__ == '__main__':
 
     # Check for windoze for clear screen command.
     if sys.platform.startswith('win32'):
-        clear_cmd = 'cls'
+        CLEAR_CMD = 'cls'
     else:
-        clear_cmd = 'clear'
+        CLEAR_CMD = 'clear'
 
     # Instantiate 'game' object.
     game = game_classes.Game()
